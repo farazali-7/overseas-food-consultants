@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
+import { ActionLink } from "@/components/shared/action-link";
 import { itemVariants, riseContainer } from "@/lib/motion";
 import { FounderPortrait } from "./founder-portrait";
 import { FounderQuote } from "./founder-quote";
@@ -99,16 +98,9 @@ export function Founder() {
             <FounderSkills variants={item} />
 
             <motion.div variants={item} className="mt-10">
-              <Link
-                href="#process"
-                className="group inline-flex h-11 items-center justify-center gap-2 rounded-full border border-border bg-card px-5 text-[0.9375rem] font-medium outline-none transition-[transform,border-color,color] duration-200 hover:-translate-y-px hover:border-[color-mix(in_oklch,var(--border),var(--foreground)_28%)] hover:text-brand focus-visible:ring-3 focus-visible:ring-ring/50 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-              >
+              <ActionLink href="#process" variant="outline" size="md" arrow>
                 Learn about our approach
-                <ArrowRight
-                  aria-hidden
-                  className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
-                />
-              </Link>
+              </ActionLink>
             </motion.div>
           </div>
         </motion.div>

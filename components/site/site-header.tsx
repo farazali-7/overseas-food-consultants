@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
+import { ActionLink } from "@/components/shared/action-link";
 
 const NAV = [
   { label: "Expertise", href: "#expertise" },
@@ -45,12 +45,12 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <Button
-          render={<Link href="#contact" />}
-          className="h-9 rounded-full px-4 text-[0.8125rem]"
-        >
+        {/* A link, not a button: it navigates to #contact. Rendering it as a
+            real anchor is what gives it Enter activation, focus, and
+            context-menu behaviour for free. */}
+        <ActionLink href="#contact" variant="primary" size="sm">
           Book a consultation
-        </Button>
+        </ActionLink>
       </div>
     </header>
   );
