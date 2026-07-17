@@ -37,7 +37,12 @@
 export function FounderPortrait() {
   return (
     <figure className="m-0">
-      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card border border-border bg-[color-mix(in_oklch,var(--background),var(--foreground)_3%)]">
+      {/* No border, no shadow, no card. The portrait sits in whitespace and
+          carries itself — framing a face in a bordered box is what makes a
+          leadership page read as a staff directory. The subtle ground exists
+          only to mark the reserved slot while the real photo is outstanding;
+          it goes with the placeholder. */}
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card bg-[color-mix(in_oklch,var(--background),var(--foreground)_3%)]">
         <div
           aria-hidden
           className="absolute inset-0 flex flex-col items-center justify-center gap-3"

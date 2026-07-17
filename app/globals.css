@@ -25,14 +25,11 @@
   --radius-control: 1rem;
 
   /* ---------------------------------------------------------------------
-     Shadows. Exactly two, plus the header.
-     Premium surfaces carry weight with a 1px border and a whisper of
-     shadow — not a large blur. `lift` is the hover state of `card`, so the
-     two are defined together and can never drift apart.
+     Shadow. Exactly one, and only the header uses it.
+     Every card shadow is gone: surfaces carry their weight with a 1px rule.
+     The header alone earns a shadow, because it is genuinely floating above
+     content — and only once the page has actually scrolled.
      --------------------------------------------------------------------- */
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.03);
-  --shadow-lift:
-    0 1px 2px rgb(0 0 0 / 0.03), 0 12px 28px -12px rgb(0 0 0 / 0.1);
   --shadow-header: 0 1px 2px rgb(0 0 0 / 0.04), 0 6px 20px -12px rgb(0 0 0 / 0.12);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -121,9 +118,9 @@
      trajectory, and a trajectory needs duration. It is the one exception, and
      naming it as one stops it from becoming a precedent.
      --------------------------------------------------------------------- */
-  --dur-fast: 150ms;
-  --dur-medium: 300ms;
-  --dur-slow: 600ms;
+  --dur-fast: 180ms;
+  --dur-medium: 450ms;
+  --dur-slow: 700ms;
   --dur-draw: 1600ms;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -353,12 +350,12 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.02;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .dark .grain-overlay {
   mix-blend-mode: screen;
-  opacity: 0.045;
+  opacity: 0.03;
 }

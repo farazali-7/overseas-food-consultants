@@ -21,9 +21,9 @@ export const EASE_OUT: Transition["ease"] = [0.16, 1, 0.3, 1];
  * `draw` sits outside the scale on purpose — see the note on --dur-draw.
  */
 export const DURATION = {
-  fast: 0.15,
-  base: 0.3,
-  slow: 0.6,
+  fast: 0.18,
+  base: 0.45,
+  slow: 0.7,
   draw: 1.6,
 } as const;
 

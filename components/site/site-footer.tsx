@@ -22,11 +22,12 @@ import { Container } from "@/components/shared/container";
  * rules it out.
  */
 
+// Four, not six. A footer that mirrors the whole nav is a utility panel;
+// this is the closing page of the document. Expertise and Process live one
+// scroll away and do not need a second door here.
 const NAV = [
-  { label: "Expertise", href: "#expertise" },
   { label: "Services", href: "#services" },
   { label: "Industries", href: "#industries" },
-  { label: "Process", href: "#process" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];

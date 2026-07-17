@@ -36,10 +36,8 @@ export function Founder() {
     <section
       id="about"
       aria-labelledby="founder-heading"
-      className="relative border-t border-rule bg-[color-mix(in_oklch,var(--background),var(--foreground)_1.5%)] py-24 sm:py-32"
+      className="relative border-t border-rule py-24 sm:py-40"
     >
-      <div aria-hidden className="grain-overlay" />
-
       <Container className="relative">
         <motion.div
           variants={riseContainer(0.09)}

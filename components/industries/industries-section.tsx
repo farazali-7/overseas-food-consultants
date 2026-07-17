@@ -29,7 +29,7 @@ export function IndustriesSection() {
     <section
       id="industries"
       aria-labelledby="industries-heading"
-      className="relative border-t border-rule bg-[color-mix(in_oklch,var(--background),var(--foreground)_1.5%)] py-24 sm:py-32"
+      className="relative border-t border-rule bg-[color-mix(in_oklch,var(--background),var(--foreground)_1.5%)] py-24 sm:py-[6.875rem]"
     >
       <div aria-hidden className="grain-overlay" />
 

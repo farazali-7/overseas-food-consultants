@@ -37,7 +37,7 @@ export function Process() {
     <section
       id="process"
       aria-labelledby="process-heading"
-      className="relative border-t border-rule py-24 sm:py-32"
+      className="relative border-t border-rule py-24 sm:py-[8.75rem]"
     >
       <Container className="relative">
         <motion.div

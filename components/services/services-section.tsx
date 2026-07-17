@@ -30,7 +30,7 @@ export function ServicesSection() {
     <section
       id="services"
       aria-labelledby="services-heading"
-      className="relative border-t border-rule py-24 sm:py-32"
+      className="relative border-t border-rule py-24 sm:py-[8.75rem]"
     >
       <Container className="relative">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-16">
