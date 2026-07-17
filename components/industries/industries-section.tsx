@@ -61,6 +61,8 @@ export function IndustriesSection() {
             locations, or scaling manufacturing operations, our consulting
             adapts to the way your business works.
           </motion.p>
+
+          <motion.div variants={item} aria-hidden className="divider-rule mx-auto" />
         </motion.div>
 
         <motion.ul
@@ -68,15 +70,21 @@ export function IndustriesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-          className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          // Gap widened 24px → 32px. The cards were correct and still felt
+          // cramped; space is the cheapest thing on the page that reads as
+          // expensive.
+          className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {industries.map((industry) => (
+          {industries.map((industry, i) => (
+            // Restaurant Chains is the flagship — already ordered first as the
+            // highest-value prospect, now weighted to match.
             <EditorialCard
               key={industry.title}
               title={industry.title}
               description={industry.description}
               href={industry.href}
               icon={industry.icon}
+              featured={i === 0}
               variants={item}
             />
           ))}

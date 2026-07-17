@@ -29,8 +29,16 @@ export function TrustGrid() {
       viewport={{ once: true, margin: "0px 0px -100px 0px" }}
       className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
     >
-      {expertise.map((entry) => (
-        <TrustCard key={entry.index} item={entry} variants={item} />
+      {expertise.map((entry, i) => (
+        // The first entry — international experience — is the strongest trust
+        // signal OFC has, so it is promoted to the section's entry point
+        // rather than sitting equal to "Training".
+        <TrustCard
+          key={entry.index}
+          item={entry}
+          featured={i === 0}
+          variants={item}
+        />
       ))}
     </motion.ul>
   );

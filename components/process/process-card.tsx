@@ -33,15 +33,22 @@ export function ProcessCard({
       {/*
         Decorative: the <ol> already conveys sequence to assistive tech, so
         announcing "01" would just make a screen reader read the order twice.
+
+        On hover the numeral takes the brand colour. That is the whole hover —
+        the card holds still. A phase number lighting up is a quieter and far
+        more editorial signal than a card jumping 2px, and it points at the
+        thing the reader is actually pointing at.
       */}
       <span
         aria-hidden
-        className="font-mono text-[2.5rem] leading-none tracking-tight text-muted-foreground/30"
+        className="font-mono text-[2.5rem] leading-none tracking-tight text-muted-foreground/30 transition-colors duration-[var(--dur-medium)] ease-[var(--ease-out)] group-hover:text-brand motion-reduce:transition-none"
       >
         {phase.number}
       </span>
 
-      <h3 className="font-heading mt-6 text-[1.375rem] font-medium leading-snug tracking-[-0.01em]">
+      {/* Letter-spacing opens by half a pixel. Almost subliminal — it reads as
+          the word settling rather than as an animation. */}
+      <h3 className="font-heading mt-6 text-[1.375rem] font-medium leading-snug tracking-[-0.01em] transition-[letter-spacing] duration-[var(--dur-medium)] ease-[var(--ease-out)] group-hover:tracking-[0.005em] motion-reduce:transition-none">
         {phase.title}
       </h3>
 

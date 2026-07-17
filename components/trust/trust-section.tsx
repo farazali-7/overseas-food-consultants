@@ -58,6 +58,8 @@ export function TrustSection() {
             improvements, and long-term partnerships — not one-size-fits-all
             recommendations.
           </motion.p>
+
+          <motion.div variants={item} aria-hidden className="divider-rule" />
         </motion.div>
 
         <TrustGrid />

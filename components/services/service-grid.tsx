@@ -26,7 +26,9 @@ export function ServiceGrid() {
       viewport={{ once: true, margin: "0px 0px -100px 0px" }}
       className="grid grid-cols-1 gap-5 sm:grid-cols-2"
     >
-      {services.map((service) => (
+      {services.map((service, i) => (
+        // "Launch New Food Businesses" leads: it is the widest door into the
+        // practice and the one a visitor is most likely to arrive needing.
         <EditorialCard
           key={service.title}
           title={service.title}
@@ -34,6 +36,7 @@ export function ServiceGrid() {
           footer={service.outcome}
           href={service.href}
           icon={service.icon}
+          featured={i === 0}
           variants={item}
         />
       ))}

@@ -68,6 +68,8 @@ export function Process() {
             understand your business, identify opportunities, implement
             meaningful improvements, and support long-term success.
           </motion.p>
+
+          <motion.div variants={item} aria-hidden className="divider-rule" />
         </motion.div>
 
         <div className="relative mt-16">

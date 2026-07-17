@@ -64,6 +64,8 @@ export function ServicesSection() {
               safety systems and improving day-to-day performance.
             </motion.p>
 
+            <motion.div variants={item} aria-hidden className="divider-rule" />
+
             <motion.div variants={item} className="mt-8">
               <ActionLink href="#contact" variant="outline" size="md" arrow>
                 Book a consultation

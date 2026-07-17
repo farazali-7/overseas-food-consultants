@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 
+import { cn } from "@/lib/utils";
 import type { Expertise } from "./trust-data";
 
 type Variants = React.ComponentProps<typeof motion.li>["variants"];
@@ -9,20 +10,28 @@ type Variants = React.ComponentProps<typeof motion.li>["variants"];
 /**
  * One competence.
  *
- * These cards are not links and not buttons — there is nowhere to go yet, so
- * they are `li` elements and stay out of the tab order. Making a non-
- * interactive card focusable is a common accessibility own-goal: it adds six
- * empty stops for keyboard users and tells a screen reader something is
- * actionable when it isn't.
+ * Inert by design — no link, no tab stop. There is nowhere to go, so these are
+ * plain `li`s. Making a non-interactive card focusable is a common
+ * accessibility own-goal: six empty tab stops, and a screen reader told
+ * something is actionable when it isn't.
  *
- * Hover therefore expresses quality, not affordance: the border firms up, the
- * card lifts 3px, the icon warms to brand. Nothing implies a click.
+ * HIERARCHY: the featured card spans the full row and lays out horizontally,
+ * so the extra width buys a real editorial composition rather than one short
+ * line stretched across three columns. It carries the strongest trust signal
+ * (international experience); the remaining five support it. Six equal cards
+ * gave the eye nowhere to land.
+ *
+ * Hover is border + 3° icon + a 2px title nudge. No lift: this section's job
+ * is to look like it is not trying, and a card that leaps at the cursor is
+ * trying.
  */
 export function TrustCard({
   item,
+  featured = false,
   variants,
 }: {
   item: Expertise;
+  featured?: boolean;
   variants?: Variants;
 }) {
   const Icon = item.icon;
@@ -30,29 +39,56 @@ export function TrustCard({
   return (
     <motion.li
       variants={variants}
-      className="surface surface-interactive group relative flex flex-col p-8"
+      className={cn(
+        "surface surface-interactive group relative p-8",
+        featured
+          ? "flex flex-col gap-6 sm:col-span-2 sm:flex-row sm:items-start sm:gap-8 lg:col-span-3"
+          : "flex flex-col",
+      )}
     >
-      <div className="mb-7 flex items-start justify-between">
+      <div
+        className={cn(
+          "flex items-start justify-between",
+          featured ? "sm:block" : "mb-7",
+        )}
+      >
         <Icon
           aria-hidden
           strokeWidth={1.5}
-          className="size-6 text-foreground/70 transition-colors duration-300 group-hover:text-brand motion-reduce:transition-none"
+          className={cn(
+            "text-foreground/70 transition-transform duration-[var(--dur-medium)] ease-[var(--ease-out)] group-hover:rotate-3 motion-reduce:transition-none",
+            featured ? "size-9" : "size-7",
+          )}
         />
-        <span
-          aria-hidden
-          className="font-mono text-[0.6875rem] tracking-[0.1em] text-muted-foreground/45"
-        >
-          {item.index}
-        </span>
+        {!featured && (
+          <span
+            aria-hidden
+            className="font-mono text-[0.6875rem] tracking-[0.1em] text-muted-foreground/45"
+          >
+            {item.index}
+          </span>
+        )}
       </div>
 
-      <h3 className="font-heading text-[1.375rem] font-medium leading-snug tracking-[-0.01em]">
-        {item.title}
-      </h3>
+      <div className={cn(featured && "flex-1")}>
+        <h3
+          className={cn(
+            "font-heading font-medium leading-snug tracking-[-0.01em] transition-transform duration-[var(--dur-medium)] ease-[var(--ease-out)] group-hover:translate-x-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0",
+            featured ? "text-[1.875rem]" : "text-[1.375rem]",
+          )}
+        >
+          {item.title}
+        </h3>
 
-      <p className="mt-3 text-[0.9375rem] leading-[1.6] text-muted-foreground">
-        {item.description}
-      </p>
+        <p
+          className={cn(
+            "mt-3 leading-[1.6] text-muted-foreground",
+            featured ? "max-w-[52ch] text-base" : "text-[0.9375rem]",
+          )}
+        >
+          {item.description}
+        </p>
+      </div>
     </motion.li>
   );
 }
