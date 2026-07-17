@@ -30,7 +30,7 @@ export function TrustCard({
   return (
     <motion.li
       variants={variants}
-      className="group relative flex flex-col rounded-[20px] border border-border bg-card p-8 transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-[3px] hover:border-[color-mix(in_oklch,var(--border),var(--foreground)_28%)] hover:shadow-[0_1px_2px_rgba(0,0,0,0.03),0_12px_28px_-12px_rgba(0,0,0,0.10)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+      className="surface surface-interactive group relative flex flex-col p-8"
     >
       <div className="mb-7 flex items-start justify-between">
         <Icon

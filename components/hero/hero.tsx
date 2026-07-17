@@ -1,3 +1,4 @@
+import { Container } from "@/components/shared/container";
 import { HeroActions } from "./hero-actions";
 import { HeroBackground } from "./hero-background";
 import { HeroBadge } from "./hero-badge";
@@ -39,7 +40,7 @@ export function Hero() {
     <section className="relative overflow-hidden pb-20 pt-20 sm:pb-28 sm:pt-28">
       <HeroBackground />
 
-      <div className="relative mx-auto max-w-[1280px] px-6 text-center lg:px-10">
+      <Container className="relative text-center">
         <HeroBadge delay="80ms">Trusted Food Business Consulting</HeroBadge>
 
         <HeroContent headlineDelay="160ms" copyDelay="240ms" />
@@ -67,11 +68,11 @@ export function Hero() {
             ))}
           </ul>
         </div>
-      </div>
+      </Container>
 
-      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
+      <Container className="relative">
         <HeroIllustration delay="480ms" />
-      </div>
+      </Container>
     </section>
   );
 }

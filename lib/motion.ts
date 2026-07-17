@@ -12,10 +12,18 @@ import type { Transition, Variants } from "framer-motion";
 /** Decelerate-out. Fast start, long settle — motion that arrives, not bounces. */
 export const EASE_OUT: Transition["ease"] = [0.16, 1, 0.3, 1];
 
+/**
+ * The same three speeds as `--dur-fast/medium/slow` in globals.css, in the
+ * seconds framer-motion expects. These two must not drift: a CSS hover at
+ * 150ms next to a JS hover at 200ms is a difference nobody can name and
+ * everybody feels.
+ *
+ * `draw` sits outside the scale on purpose — see the note on --dur-draw.
+ */
 export const DURATION = {
-  fast: 0.3,
-  base: 0.5,
-  slow: 0.8,
+  fast: 0.15,
+  base: 0.3,
+  slow: 0.6,
   draw: 1.6,
 } as const;
 

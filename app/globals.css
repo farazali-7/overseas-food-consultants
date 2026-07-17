@@ -13,6 +13,26 @@
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-rule: var(--rule);
+
+  /* ---------------------------------------------------------------------
+     Radius scale. Three values, no improvisation.
+     The system had drifted to 20 / 24 / 32px across cards that are the same
+     object at different sizes — the exact "don't mix 12/18/20/24/30" failure.
+     Pills stay 999px: they are the marketing CTA shape, not a control radius.
+     --------------------------------------------------------------------- */
+  --radius-card: 1.5rem;
+  --radius-control: 1rem;
+
+  /* ---------------------------------------------------------------------
+     Shadows. Exactly two, plus the header.
+     Premium surfaces carry weight with a 1px border and a whisper of
+     shadow — not a large blur. `lift` is the hover state of `card`, so the
+     two are defined together and can never drift apart.
+     --------------------------------------------------------------------- */
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.03);
+  --shadow-lift:
+    0 1px 2px rgb(0 0 0 / 0.03), 0 12px 28px -12px rgb(0 0 0 / 0.1);
+  --shadow-header: 0 1px 2px rgb(0 0 0 / 0.04), 0 6px 20px -12px rgb(0 0 0 / 0.12);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -71,10 +91,12 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.905 0.005 80);
   --input: oklch(0.905 0.005 80);
-  --ring: oklch(0.42 0.055 155);
-  /* Deep evergreen. Carries every accent in the page, and is rationed
-     hard — one node in the hero mark, focus rings, and icon hover. */
-  --brand: oklch(0.42 0.055 155);
+  --ring: oklch(0.495 0.214 284.8);
+  /* Iris (#5D3FD3). Carries every accent in the page, and is rationed hard —
+     one node in the hero mark, focus rings, italic emphasis, and icon hover.
+     Measured 6.45:1 on the paper background, so it clears WCAG AA at every
+     text size it is used at. */
+  --brand: oklch(0.495 0.214 284.8);
   --brand-foreground: oklch(0.985 0.003 85);
   --rule: oklch(0.905 0.005 80);
   --chart-1: oklch(0.87 0 0);
@@ -86,6 +108,22 @@
   /* One deceleration curve for the whole site. Fast departure, long settle —
      motion that arrives rather than bounces. */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---------------------------------------------------------------------
+     Duration scale. Three speeds, each with one job.
+       fast   — hover/interaction feedback. Must feel instant; past ~200ms a
+                hover reads as lag rather than response.
+       medium — reveals and state changes. Long enough to be perceived as
+                motion, short enough never to gate the reader.
+       slow   — orchestrated sequences only (the process line sweep).
+     `draw` is deliberately outside the scale: the hero curve is describing a
+     trajectory, and a trajectory needs duration. It is the one exception, and
+     naming it as one stops it from becoming a precedent.
+     --------------------------------------------------------------------- */
+  --dur-fast: 150ms;
+  --dur-medium: 300ms;
+  --dur-slow: 600ms;
+  --dur-draw: 1600ms;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -114,8 +152,10 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 11%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.72 0.09 155);
-  --brand: oklch(0.72 0.09 155);
+  /* Same Iris hue, lifted in lightness and eased in chroma. The light-mode
+     value at L 0.495 would sit too close to the dark ground to read. */
+  --ring: oklch(0.75 0.16 284.8);
+  --brand: oklch(0.75 0.16 284.8);
   --brand-foreground: oklch(0.185 0.006 70);
   --rule: oklch(1 0 0 / 11%);
   --chart-1: oklch(0.87 0 0);
@@ -214,24 +254,47 @@
     @apply font-mono text-[0.6875rem] font-medium tracking-[0.18em] uppercase;
   }
 
+  /*
+    The card surface, defined once.
+    Trust, Process, Services and Industries cards are the same object doing
+    different jobs, and each had its own copy of this border/radius/shadow/
+    hover stack. They had already drifted (20px vs 24px radius). One class
+    means the next tweak lands on all four at once.
+
+    `--hover-border` is derived from the border token rather than hardcoded,
+    so re-theming --border keeps the hover relationship intact.
+  */
+  .surface {
+    @apply rounded-card border border-border bg-card shadow-card;
+    transition-property: transform, border-color, box-shadow;
+    transition-duration: var(--dur-medium);
+    transition-timing-function: var(--ease-out);
+  }
+
+  .surface-interactive:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklch, var(--border), var(--foreground) 28%);
+    box-shadow: var(--shadow-lift);
+  }
+
   .reveal {
-    animation: ofc-rise 0.5s var(--ease-out) both;
+    animation: ofc-rise var(--dur-medium) var(--ease-out) both;
   }
 
   /* Fade with no travel — for SVG furniture, where a translate would slide
      the geometry out of register with the rest of the drawing. */
   .fade {
-    animation: ofc-fade 0.6s var(--ease-out) both;
+    animation: ofc-fade var(--dur-slow) var(--ease-out) both;
   }
 
   .draw {
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
-    animation: ofc-draw 1.6s var(--ease-out) both;
+    animation: ofc-draw var(--dur-draw) var(--ease-out) both;
   }
 
   .pop {
-    animation: ofc-pop 0.3s var(--ease-out) both;
+    animation: ofc-pop var(--dur-medium) var(--ease-out) both;
     transform-box: fill-box;
     transform-origin: center;
   }
@@ -244,8 +307,17 @@
   .reveal,
   .pop,
   .fade {
-    animation: ofc-fade 0.3s ease both;
+    animation: ofc-fade var(--dur-fast) ease both;
     animation-delay: 0s !important;
+  }
+
+  /* The card surface lifts on hover. Transform is exactly what the
+     preference is asking us to drop, so the border and shadow carry the
+     hover state alone. */
+  .surface,
+  .surface-interactive:hover {
+    transition: none;
+    transform: none;
   }
 
   .draw {

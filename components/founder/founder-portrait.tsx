@@ -37,7 +37,7 @@
 export function FounderPortrait() {
   return (
     <figure className="m-0">
-      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-border bg-[color-mix(in_oklch,var(--background),var(--foreground)_3%)]">
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card border border-border bg-[color-mix(in_oklch,var(--background),var(--foreground)_3%)]">
         <div
           aria-hidden
           className="absolute inset-0 flex flex-col items-center justify-center gap-3"

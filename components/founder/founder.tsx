@@ -7,6 +7,7 @@ import { itemVariants, riseContainer } from "@/lib/motion";
 import { FounderPortrait } from "./founder-portrait";
 import { FounderQuote } from "./founder-quote";
 import { FounderSkills } from "./founder-skills";
+import { Container } from "@/components/shared/container";
 
 /**
  * The person beat — placed immediately after Process, per the brief's call to
@@ -39,7 +40,7 @@ export function Founder() {
     >
       <div aria-hidden className="grain-overlay" />
 
-      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
+      <Container className="relative">
         <motion.div
           variants={riseContainer(0.09)}
           initial="hidden"
@@ -104,7 +105,7 @@ export function Founder() {
             </motion.div>
           </div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { itemVariants, riseContainer } from "@/lib/motion";
 import { EditorialCard } from "@/components/shared/editorial-card";
 import { industries } from "./industry-data";
+import { Container } from "@/components/shared/container";
 
 /**
  * "Built for Every Stage of the Food Business" — the belonging beat.
@@ -32,7 +33,7 @@ export function IndustriesSection() {
     >
       <div aria-hidden className="grain-overlay" />
 
-      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
+      <Container className="relative">
         <motion.div
           variants={riseContainer(0.09)}
           initial="hidden"
@@ -80,7 +81,7 @@ export function IndustriesSection() {
             />
           ))}
         </motion.ul>
-      </div>
+      </Container>
     </section>
   );
 }

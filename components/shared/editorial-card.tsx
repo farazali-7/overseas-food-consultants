@@ -48,7 +48,7 @@ export function EditorialCard({
   return (
     <motion.li
       variants={variants}
-      className="group relative flex flex-col rounded-3xl border border-border bg-card p-8 transition-[transform,border-color,box-shadow] duration-300 ease-out has-[a:focus-visible]:ring-3 has-[a:focus-visible]:ring-ring/50 hover:-translate-y-[2px] hover:border-[color-mix(in_oklch,var(--border),var(--foreground)_28%)] hover:shadow-[0_1px_2px_rgba(0,0,0,0.03),0_12px_28px_-12px_rgba(0,0,0,0.10)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+      className="surface surface-interactive group relative flex flex-col p-8 has-[a:focus-visible]:ring-3 has-[a:focus-visible]:ring-ring/50"
     >
       <Icon
         aria-hidden
@@ -59,7 +59,7 @@ export function EditorialCard({
       <h3 className="font-heading text-[1.375rem] font-medium leading-snug tracking-[-0.01em]">
         <Link
           href={href}
-          className="outline-none transition-colors after:absolute after:inset-0 after:rounded-3xl after:content-[''] group-hover:text-brand motion-reduce:transition-none"
+          className="outline-none transition-colors after:absolute after:inset-0 after:rounded-card after:content-[''] group-hover:text-brand motion-reduce:transition-none"
         >
           {title}
         </Link>

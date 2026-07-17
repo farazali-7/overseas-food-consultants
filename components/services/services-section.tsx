@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ActionLink } from "@/components/shared/action-link";
 import { itemVariants, riseContainer } from "@/lib/motion";
 import { ServiceGrid } from "./service-grid";
+import { Container } from "@/components/shared/container";
 
 /**
  * "Where We Create Impact" — the recognition beat.
@@ -31,7 +32,7 @@ export function ServicesSection() {
       aria-labelledby="services-heading"
       className="relative border-t border-rule py-24 sm:py-32"
     >
-      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
+      <Container className="relative">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-16">
           <motion.div
             variants={riseContainer(0.09)}
@@ -72,7 +73,7 @@ export function ServicesSection() {
 
           <ServiceGrid />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

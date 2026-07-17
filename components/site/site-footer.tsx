@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { siteConfig } from "@/lib/site-config";
+import { Container } from "@/components/shared/container";
 
 /**
  * The editorial footer.
@@ -38,7 +39,7 @@ export function SiteFooter() {
     <footer className="relative border-t border-rule bg-[color-mix(in_oklch,var(--background),var(--foreground)_1.5%)]">
       <div aria-hidden className="grain-overlay" />
 
-      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
+      <Container className="relative">
         {/* The statement. Set at section-heading scale because it is one —
             the last thing the site says, not a strapline under a logo. */}
         <div className="py-20 sm:py-24">
@@ -115,7 +116,7 @@ export function SiteFooter() {
             Designed with clarity. Built for long-term partnerships.
           </p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

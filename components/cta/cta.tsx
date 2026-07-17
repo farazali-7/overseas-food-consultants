@@ -6,6 +6,7 @@ import { itemVariants, riseContainer } from "@/lib/motion";
 import { siteConfig } from "@/lib/site-config";
 import { CtaButtons } from "./cta-buttons";
 import { CtaContent } from "./cta-content";
+import { Container } from "@/components/shared/container";
 
 /**
  * The closing beat.
@@ -46,13 +47,13 @@ export function Cta() {
       aria-labelledby="cta-heading"
       className="relative border-t border-rule py-24 sm:py-32"
     >
-      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
+      <Container className="relative">
         <motion.div
           variants={riseContainer(0.09)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "0px 0px -80px 0px" }}
-          className="relative overflow-hidden rounded-[32px] border border-border bg-card px-6 py-20 text-center sm:px-16 sm:py-24"
+          className="surface relative overflow-hidden px-6 py-20 text-center sm:px-16 sm:py-24"
         >
           {/* The same brand wash that opens the hero, reprised at the close —
               a bookend, and the only colour in the section beyond one word. */}
@@ -94,7 +95,7 @@ export function Cta() {
             </motion.ul>
           </div>
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

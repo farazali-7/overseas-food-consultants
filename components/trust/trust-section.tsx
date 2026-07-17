@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 
 import { itemVariants, riseContainer } from "@/lib/motion";
 import { TrustGrid } from "./trust-grid";
+import { Container } from "@/components/shared/container";
 
 /**
  * The credibility beat, immediately after the hero.
@@ -26,7 +27,7 @@ export function TrustSection() {
     >
       <div aria-hidden className="grain-overlay" />
 
-      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
+      <Container className="relative">
         <motion.div
           variants={riseContainer(0.09)}
           initial="hidden"
@@ -60,7 +61,7 @@ export function TrustSection() {
         </motion.div>
 
         <TrustGrid />
-      </div>
+      </Container>
     </section>
   );
 }

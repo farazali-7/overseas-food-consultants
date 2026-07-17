@@ -1,3 +1,5 @@
+import { Container } from "@/components/shared/container";
+
 /**
  * Atmosphere layer for the hero. Entirely decorative and entirely CSS — no
  * image requests, nothing that can shift layout, nothing announced to a
@@ -13,13 +15,16 @@
 export function HeroBackground() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 mx-auto hidden max-w-[1280px] px-6 lg:block lg:px-10">
+      {/* The column rules must track the same measure as the content, so this
+          reuses Container rather than re-declaring the width. Hardcoding it
+          here is exactly how the rules drift out of register with the text. */}
+      <Container className="absolute inset-0 hidden lg:block">
         <div className="relative h-full">
           <div className="absolute inset-y-0 left-0 w-px bg-rule/60" />
           <div className="absolute inset-y-0 right-0 w-px bg-rule/60" />
           <div className="absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-rule/35 xl:block" />
         </div>
-      </div>
+      </Container>
 
       <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(60%_100%_at_50%_0%,color-mix(in_oklch,var(--brand),transparent_96%),transparent_70%)]" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-rule" />

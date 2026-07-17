@@ -21,6 +21,19 @@
 export const siteConfig = {
   name: "Overseas Food Consultants",
 
+  /**
+   * PLACEHOLDER — replace with the real production origin.
+   *
+   * This is `metadataBase`. Next.js resolves every relative Open Graph and
+   * canonical URL against it, so a wrong value here does not break the build —
+   * it silently ships share cards and canonicals pointing at a domain OFC does
+   * not own. Wrong is strictly worse than missing.
+   */
+  url: "https://overseasfoodconsultants.example",
+
+  description:
+    "We help food businesses build stronger systems, meet international standards, and grow with confidence — from HACCP implementation to operational excellence.",
+
   /** PLACEHOLDER — replace with the real enquiries inbox. */
   email: "hello@overseasfoodconsultants.example",
 

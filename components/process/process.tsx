@@ -6,6 +6,7 @@ import { itemVariants, riseContainer } from "@/lib/motion";
 import { ProcessCard } from "./process-card";
 import { ProcessLine } from "./process-line";
 import { phases } from "./process-data";
+import { Container } from "@/components/shared/container";
 
 /**
  * "A Structured Partnership from Day One" — the anxiety beat.
@@ -38,7 +39,7 @@ export function Process() {
       aria-labelledby="process-heading"
       className="relative border-t border-rule py-24 sm:py-32"
     >
-      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
+      <Container className="relative">
         <motion.div
           variants={riseContainer(0.09)}
           initial="hidden"
@@ -87,7 +88,7 @@ export function Process() {
             ))}
           </motion.ol>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
