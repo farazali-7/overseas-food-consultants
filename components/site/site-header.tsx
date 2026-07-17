@@ -6,6 +6,8 @@ const NAV = [
   { label: "Expertise", href: "#expertise" },
   { label: "Services", href: "#services" },
   { label: "Industries", href: "#industries" },
+  { label: "Process", href: "#process" },
+  { label: "About", href: "#about" },
 ];
 
 export function SiteHeader() {

@@ -49,9 +49,12 @@ export function ProcessCard({
         {phase.description}
       </p>
 
-      {/* mt-auto pins the outcome to the card floor, so the five badges align
-          across the row even though the descriptions differ in length. */}
-      <div className="mt-auto border-t border-rule/70 pt-5 [margin-top:1.75rem] lg:[margin-top:auto]">
+      {/* On the desktop row the cards stretch to equal height, so `lg:mt-auto`
+          pins every outcome to the card floor and the five badges align across
+          the row despite uneven descriptions. Stacked on mobile each card is
+          its own row and nothing stretches, so `mt-auto` would collapse to
+          zero — hence the explicit `mt-7` below it. */}
+      <div className="mt-7 border-t border-rule/70 pt-5 lg:mt-auto">
         <span className="eyebrow text-muted-foreground/60">Outcome</span>
         <p className="mt-1.5 text-sm font-medium transition-colors duration-300 group-hover:text-brand motion-reduce:transition-none">
           {phase.outcome}
