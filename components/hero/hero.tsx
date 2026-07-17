@@ -37,7 +37,7 @@ const PRACTICE_AREAS = [
  */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pb-20 pt-20 sm:pb-28 sm:pt-28">
+    <section className="relative overflow-hidden pb-20 pt-12 sm:pb-28">
       <HeroBackground />
 
       <Container className="relative text-center">
