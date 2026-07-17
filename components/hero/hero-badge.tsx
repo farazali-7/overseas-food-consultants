@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import { cn } from "@/lib/utils";
 
 /**
@@ -12,20 +8,20 @@ import { cn } from "@/lib/utils";
 export function HeroBadge({
   children,
   className,
-  variants,
+  delay,
 }: {
   children: React.ReactNode;
   className?: string;
-  variants?: React.ComponentProps<typeof motion.div>["variants"];
+  delay?: string;
 }) {
   return (
-    <motion.div
-      variants={variants}
-      className={cn("flex items-center justify-center gap-3", className)}
+    <div
+      style={{ animationDelay: delay }}
+      className={cn("reveal flex items-center justify-center gap-3", className)}
     >
       <span aria-hidden className="h-px w-6 bg-rule sm:w-10" />
       <span className="eyebrow text-muted-foreground">{children}</span>
       <span aria-hidden className="h-px w-6 bg-rule sm:w-10" />
-    </motion.div>
+    </div>
   );
 }

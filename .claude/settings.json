@@ -5,7 +5,9 @@
       "Read(//c/Users/S/AppData/Local/ms-playwright/**)",
       "Bash(npm ls *)",
       "Read(//c/Users/S/AppData/Local/npm-cache/_npx/**)",
-      "Bash(node shot.js .)"
+      "Bash(node shot.js .)",
+      "Bash(timeout 150 node -e ' *)",
+      "Bash(timeout 160 node -e ' *)"
     ]
   }
 }

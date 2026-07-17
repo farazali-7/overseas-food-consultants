@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 const NAV = [
   { label: "Expertise", href: "#expertise" },
   { label: "Services", href: "#services" },
-  { label: "Approach", href: "#approach" },
-  { label: "About", href: "#about" },
+  { label: "Industries", href: "#industries" },
 ];
 
 export function SiteHeader() {

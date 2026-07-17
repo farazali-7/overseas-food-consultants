@@ -1,8 +1,3 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
-
-import { itemVariants, riseContainer } from "@/lib/motion";
 import { HeroActions } from "./hero-actions";
 import { HeroBackground } from "./hero-background";
 import { HeroBadge } from "./hero-badge";
@@ -16,7 +11,7 @@ import { HeroIllustration } from "./hero-illustration";
  * demo build both would be fabricated, and fabricated credibility is the one
  * mistake a compliance consultancy cannot survive being caught at. These are
  * disciplines OFC works in — a statement of scope, which is true by
- * construction and needs no client's permission to publish.
+ * construction and needs nobody's permission to publish.
  */
 const PRACTICE_AREAS = [
   "HACCP",
@@ -26,31 +21,32 @@ const PRACTICE_AREAS = [
   "Training",
 ];
 
+/**
+ * The whole hero is a server component: zero client JS above the fold.
+ *
+ * The stagger below is the point — eyebrow, then headline, then copy, then
+ * CTAs. Motion teaches the reading order before the visitor has consciously
+ * chosen one. Steps are ~80ms, under the threshold where a sequence starts to
+ * feel like it is being performed at you.
+ *
+ * Delays are literal values rather than a computed loop because each one was
+ * tuned against the element it belongs to — the h1 is early because it is the
+ * LCP element, the illustration is last because it is the only decorative
+ * thing here and must never precede the message.
+ */
 export function Hero() {
-  const reduced = useReducedMotion();
-  const item = itemVariants(reduced);
-
   return (
     <section className="relative overflow-hidden pb-20 pt-20 sm:pb-28 sm:pt-28">
       <HeroBackground />
 
-      <motion.div
-        // The stagger is the point: eyebrow, then headline, then copy, then
-        // CTAs. Motion is teaching the reading order before the visitor has
-        // consciously chosen one. 80ms is under the threshold where a sequence
-        // starts to feel like it is being performed at you.
-        variants={riseContainer(0.08, 0.1)}
-        initial="hidden"
-        animate="visible"
-        className="relative mx-auto max-w-[1280px] px-6 text-center lg:px-10"
-      >
-        <HeroBadge variants={item}>Trusted Food Business Consulting</HeroBadge>
+      <div className="relative mx-auto max-w-[1280px] px-6 text-center lg:px-10">
+        <HeroBadge delay="80ms">Trusted Food Business Consulting</HeroBadge>
 
-        <HeroContent variants={item} />
+        <HeroContent headlineDelay="160ms" copyDelay="240ms" />
 
-        <HeroActions variants={item} />
+        <HeroActions delay="320ms" />
 
-        <motion.div variants={item} className="mt-14">
+        <div className="reveal mt-14" style={{ animationDelay: "400ms" }}>
           <p className="eyebrow mb-4 text-muted-foreground/70">
             Areas of practice
           </p>
@@ -64,11 +60,11 @@ export function Hero() {
               </li>
             ))}
           </ul>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       <div className="relative mx-auto max-w-[1280px] px-6 lg:px-10">
-        <HeroIllustration />
+        <HeroIllustration delay="480ms" />
       </div>
     </section>
   );

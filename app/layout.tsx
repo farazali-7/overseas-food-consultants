@@ -38,7 +38,19 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {/*
+          The below-fold sections reveal on scroll via framer-motion, which
+          server-renders its starting state as inline `opacity:0`. With JS
+          disabled those elements would never animate in and the page would
+          read as blank. This forces them visible when there is no JS to run
+          the reveal. The hero needs no such net — it is pure CSS.
+        */}
+        <noscript>
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }

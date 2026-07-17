@@ -83,6 +83,9 @@
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
+  /* One deceleration curve for the whole site. Fast departure, long settle —
+     motion that arrives rather than bounces. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -147,11 +150,107 @@
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Hero motion — CSS, deliberately not JavaScript.
+
+   The hero is the LCP element. Driving its entrance from a JS animation
+   library means every word ships as `opacity:0` in the HTML and cannot paint
+   until React hydrates, which pushes LCP out by the whole hydration cost and
+   leaves a blank page if the bundle is slow or fails. CSS animations start at
+   first paint, need no hydration, and let the entire hero stay a server
+   component with zero client JS.
+
+   Everything here animates only opacity/transform (compositor-only, no
+   layout, no repaint) and uses `both` fill so there is no flash of the
+   pre-animation state and no layout shift.
+   --------------------------------------------------------------------------- */
+
+@keyframes ofc-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ofc-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Paths carry pathLength="1", so the dash geometry is normalised to 0–1 and
+   one keyframe draws any path regardless of its real length. */
+@keyframes ofc-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ofc-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @layer components {
   /* Editorial eyebrow: mono, letterspaced, small. Reads as documentation
      rather than marketing, which is the register compliance buyers trust. */
   .eyebrow {
     @apply font-mono text-[0.6875rem] font-medium tracking-[0.18em] uppercase;
+  }
+
+  .reveal {
+    animation: ofc-rise 0.5s var(--ease-out) both;
+  }
+
+  /* Fade with no travel — for SVG furniture, where a translate would slide
+     the geometry out of register with the rest of the drawing. */
+  .fade {
+    animation: ofc-fade 0.6s var(--ease-out) both;
+  }
+
+  .draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: ofc-draw 1.6s var(--ease-out) both;
+  }
+
+  .pop {
+    animation: ofc-pop 0.3s var(--ease-out) both;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+}
+
+/* Reduced motion: keep the fade (it still carries reading order) and drop
+   every transform and every stagger. Delays are set inline per element, so
+   they must be overridden with !important to actually collapse. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .pop,
+  .fade {
+    animation: ofc-fade 0.3s ease both;
+    animation-delay: 0s !important;
+  }
+
+  .draw {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 }
 

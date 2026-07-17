@@ -1,10 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-
-type Variants = React.ComponentProps<typeof motion.div>["variants"];
 
 /**
  * Two CTAs, deliberately unequal.
@@ -14,15 +9,15 @@ type Variants = React.ComponentProps<typeof motion.div>["variants"];
  * converts. Giving the secondary a border would create two competing targets
  * and flatten the hierarchy, so it stays a quiet text link with an arrow.
  *
- * `h-12` overrides the design system's `lg` size (h-9). System sizes are
- * tuned for dense app UI; a hero CTA needs a comfortable touch target and
- * enough mass to anchor the composition.
+ * `h-12` is a deliberate override of the design system's `lg` size (h-9).
+ * System sizes are tuned for dense app UI; a hero CTA needs a comfortable
+ * touch target and enough mass to anchor the composition.
  */
-export function HeroActions({ variants }: { variants?: Variants }) {
+export function HeroActions({ delay }: { delay?: string }) {
   return (
-    <motion.div
-      variants={variants}
-      className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-5"
+    <div
+      style={{ animationDelay: delay }}
+      className="reveal mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-5"
     >
       <Link
         href="#contact"
@@ -41,6 +36,6 @@ export function HeroActions({ variants }: { variants?: Variants }) {
           className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
         />
       </Link>
-    </motion.div>
+    </div>
   );
 }
