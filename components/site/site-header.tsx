@@ -24,9 +24,13 @@ export function SiteHeader() {
           >
             OFC
           </span>
-          <span className="font-heading text-[0.9375rem] tracking-tight">
+          {/* Below sm the mark carries the brand alone. At 390px the full
+              wordmark cannot share a row with the CTA without wrapping to two
+              lines, and a wrapped masthead reads as broken rather than tight. */}
+          <span className="hidden whitespace-nowrap font-heading text-[0.9375rem] tracking-tight sm:inline">
             Overseas Food Consultants
           </span>
+          <span className="sr-only sm:hidden">Overseas Food Consultants</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
