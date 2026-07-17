@@ -53,8 +53,14 @@ export function Hero() {
           <ul className="mx-auto flex max-w-[760px] flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-muted-foreground sm:gap-x-5">
             {PRACTICE_AREAS.map((area, i) => (
               <li key={area} className="flex items-center gap-3 sm:gap-5">
+                {/* Separators only once the row can actually hold a row. Below
+                    sm this list wraps, and a leading dot on a wrapped line
+                    reads as a stray bullet rather than a divider. */}
                 {i > 0 && (
-                  <span aria-hidden className="size-[3px] rounded-full bg-rule" />
+                  <span
+                    aria-hidden
+                    className="hidden size-[3px] rounded-full bg-rule sm:block"
+                  />
                 )}
                 {area}
               </li>
